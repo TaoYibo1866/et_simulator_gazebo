@@ -68,23 +68,23 @@ void timerCallback(const ros::TimerEvent &event)
 
 int main(int argc, char **argv)
 {
-  ros::init(argc, argv, "rotor2_driver");
+  ros::init(argc, argv, "et3116a_driver");
   ros::NodeHandle nh;
   set_joint_client = nh.serviceClient<SetModelConfiguration>("/gazebo/set_model_configuration");
   get_joint_client = nh.serviceClient<GetJointProperties>("/gazebo/get_joint_properties");
   set_joint_client.waitForExistence();
   get_joint_client.waitForExistence();
-  ros::param::param<std::string>("~model_name", set_srv.request.model_name, "rotor2");
-  ros::param::param<std::string>("~urdf_param_name", set_srv.request.urdf_param_name, "robot_description");
+  set_srv.request.model_name = "ET3116A";
+  set_srv.request.urdf_param_name = "robot_description";
   std::vector<std::string> joint_names(2);
-  ros::param::param<std::string>("~joint0", joint_names[0], "rotor2/pillar_joint");
-  ros::param::param<std::string>("~joint1", joint_names[1], "rotor2/load_joint");
+  joint_names[0] = "ET3116A/pillar_joint";
+  joint_names[1] = "ET3116A/load_joint";
   set_srv.request.joint_names = joint_names;
   set_srv.request.joint_positions.resize(2);
   get_srv0.request.joint_name = joint_names[0];
   get_srv1.request.joint_name = joint_names[1];
-  ros::Subscriber cmd_sub = nh.subscribe<Joy>("rotor2_twist_cmd", 1, cmdCallback);
-  joint_pub = nh.advertise<Joy>("rotor2_angle", 1);
+  ros::Subscriber cmd_sub = nh.subscribe<Joy>("cmd_vel", 1, cmdCallback);
+  joint_pub = nh.advertise<Joy>("joint_positions", 1);
   ros::Timer timer = nh.createTimer(ros::Duration(0.02), timerCallback, false, false);
   ros::Duration(5).sleep(); // wait for model, otherwise gazebo gui stuck on startup
   timer.start();

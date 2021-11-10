@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.0.2)
-project(rotor_simulator)
+project(et_simulator)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
 add_compile_options(-std=c++11)
@@ -138,10 +138,10 @@ aux_source_directory(src/KCF KCF_SRCS)
 ## Declare a C++ executable
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
-add_executable(rotor2_driver_node src/rotor2_driver_node.cpp)
-add_executable(rotor2_joy_node src/rotor2_joy_node.cpp)
+add_executable(et3116a_driver_node src/et3116a_driver_node.cpp)
+add_executable(et3116a_joy_node src/et3116a_joy_node.cpp)
 add_executable(moving_drone_node src/moving_drone_node.cpp)
-add_executable(visual_servo_node src/visual_servo_node.cpp ${KCF_SRCS})
+add_executable(et3116a_servo_node src/et3116a_servo_node.cpp ${KCF_SRCS})
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -151,17 +151,17 @@ add_executable(visual_servo_node src/visual_servo_node.cpp ${KCF_SRCS})
 
 ## Add cmake target dependencies of the executable
 ## same as for the library above
-add_dependencies(rotor2_driver_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
-add_dependencies(rotor2_joy_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+add_dependencies(et3116a_driver_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+add_dependencies(et3116a_joy_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 add_dependencies(moving_drone_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
-add_dependencies(visual_servo_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+add_dependencies(et3116a_servo_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Specify libraries to link a library or executable target against
-target_link_libraries(rotor2_driver_node
+target_link_libraries(et3116a_driver_node
   ${catkin_LIBRARIES}
 )
 
-target_link_libraries(rotor2_joy_node
+target_link_libraries(et3116a_joy_node
   ${catkin_LIBRARIES}
 )
 
@@ -169,7 +169,7 @@ target_link_libraries(moving_drone_node
   ${catkin_LIBRARIES}
 )
 
-target_link_libraries(visual_servo_node
+target_link_libraries(et3116a_servo_node
   ${catkin_LIBRARIES}
   ${OpenCV_LIBS}
 )

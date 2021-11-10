@@ -165,12 +165,12 @@ void imgCb(const sensor_msgs::ImageConstPtr& img_msg)
 
 int main(int argc, char **argv)
 {
-  ros::init(argc, argv, "visual_servo");
+  ros::init(argc, argv, "et3116a_servo");
   ros::NodeHandle nh;
   image_transport::ImageTransport it(nh);
   image_transport::Subscriber img_sub = it.subscribe("/camera/image_raw", 1, imgCb);
   img_pub = it.advertise("image_output", 1);
-  cmd_pub = nh.advertise<Joy>("rotor2_twist_cmd", 1);
+  cmd_pub = nh.advertise<Joy>("cmd_vel", 1);
   cmd.axes.resize(2);
   ros::spin();
   return 0;
