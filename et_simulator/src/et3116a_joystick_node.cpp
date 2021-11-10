@@ -15,7 +15,7 @@ void joyCb(Joy joy)
 
 int main(int argc, char **argv)
 {
-  ros::init(argc, argv, "et3116a_joy");
+  ros::init(argc, argv, "et3116a_joystick");
   ros::NodeHandle nh;
   ros::Subscriber joy_sub = nh.subscribe<Joy>("/joy", 1, joyCb);
   cmd_pub = nh.advertise<Joy>("cmd_vel", 1);

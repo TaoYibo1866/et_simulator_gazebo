@@ -25,7 +25,7 @@
     </include>
     <node name="et3116a_driver" pkg="et_simulator" type="et3116a_driver_node" output="screen">
     </node>
-    <node name="et3116a_joy" pkg="et_simulator" type="et3116a_joy_node">
+    <node name="et3116a_joystick" pkg="et_simulator" type="et3116a_joystick_node" output="screen">
     </node>
     <node name="et3116a_servo" pkg="et_simulator" type="et3116a_servo_node" output="screen">
       <remap from="cmd_vel" to="/void"/>

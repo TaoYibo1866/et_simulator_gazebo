@@ -139,7 +139,7 @@ aux_source_directory(src/KCF KCF_SRCS)
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
 add_executable(et3116a_driver_node src/et3116a_driver_node.cpp)
-add_executable(et3116a_joy_node src/et3116a_joy_node.cpp)
+add_executable(et3116a_joystick_node src/et3116a_joystick_node.cpp)
 add_executable(moving_drone_node src/moving_drone_node.cpp)
 add_executable(et3116a_servo_node src/et3116a_servo_node.cpp ${KCF_SRCS})
 
@@ -152,7 +152,7 @@ add_executable(et3116a_servo_node src/et3116a_servo_node.cpp ${KCF_SRCS})
 ## Add cmake target dependencies of the executable
 ## same as for the library above
 add_dependencies(et3116a_driver_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
-add_dependencies(et3116a_joy_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+add_dependencies(et3116a_joystick_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 add_dependencies(moving_drone_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 add_dependencies(et3116a_servo_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
@@ -161,7 +161,7 @@ target_link_libraries(et3116a_driver_node
   ${catkin_LIBRARIES}
 )
 
-target_link_libraries(et3116a_joy_node
+target_link_libraries(et3116a_joystick_node
   ${catkin_LIBRARIES}
 )
 
